@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
     belongs_to :user
     belongs_to :property
+    has_many :charges
     
     validates :start_date, presence: true
     validates :end_date, presence: true
@@ -22,7 +23,8 @@ class Booking < ApplicationRecord
         overlapped_bookings = self.property.bookings.where("start_date < ? AND end_date > ? ", self.end_date, self.start_date)
         exact_booking = self.property.bookings.where("start_date = ? AND end_date = ?", self.start_date, self.end_date)
 
-        if overlapped_bookings.count > 0 || exact_booking.count > 0 raise ArgumentError.new("date range overlaps with other bookings")
+        if overlapped_bookings.count > 0 || exact_booking.count > 0 
+            raise ArgumentError.new("date range overlaps with other bookings")
         end
     end
 end

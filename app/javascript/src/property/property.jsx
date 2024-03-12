@@ -16,6 +16,7 @@ class Property extends React.Component {
     fetch(`/api/properties/${this.props.property_id}`)
       .then(handleErrors)
       .then(data => {
+      //  console.log(process.env.STRIPE_PUBLISHABLE_KEY);
         this.setState({
           property: data.property,
           loading: false,
