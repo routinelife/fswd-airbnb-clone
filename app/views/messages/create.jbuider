@@ -1,0 +1,5 @@
+json.message do
+  json.username @message.user.username
+  json.message  @message.message
+  json.image url_for(@message.image) if @message.images.attached?
+end
