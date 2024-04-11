@@ -11,5 +11,9 @@ class StaticPagesController < ApplicationController
   def login
     render 'login'
   end
+
+  def posts
+    render 'posts'
+  end
   
 end
