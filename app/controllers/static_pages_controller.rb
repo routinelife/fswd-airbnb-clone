@@ -15,5 +15,4 @@ class StaticPagesController < ApplicationController
   def posts
     render 'posts'
   end
-  
 end

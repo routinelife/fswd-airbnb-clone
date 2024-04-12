@@ -1,28 +1,11 @@
-import React from "react";
+// home.jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './layout';
+import Layout from '@src/layout';
+import { handleErrors } from '@utils/fetchHelper';
 
-//changed to class component to use componentDidMount
-/*class Posts extends React.Component {
-    componentDidMount() {
-        console.log("Posts component mounted")
-    }
+import './posts.scss';
 
-    render() {
-        return (
-        <Layout>
-           <h1>Posts page</h1>
-        </Layout>            
-        );
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-    ReactDOM.render(
-        <Posts />,
-        document.body.appendChild(document.createElement('div'))
-    )
-})
-*/
 class Posts extends React.Component {
   state = {
     title: '',
@@ -110,7 +93,8 @@ class Posts extends React.Component {
   }
 
   render () {
-    const { title, description, city, country, property_type, price_per_night, max_guests, bedrooms, beds, baths, error } = this.state;
+    const { title, description, city, country, property_type, price_per_night, max_guests, bedrooms, beds, baths } = this.state;
+
     return (
       <React.Fragment>
         <form onSubmit={this.signup}>
@@ -125,10 +109,6 @@ class Posts extends React.Component {
           <input name="beds" type="integer" className="form-control form-control-lg mb-3" placeholder="beds" value={beds} onChange={this.handleChange} required />
           <input name="baths" type="integer" className="form-control form-control-lg mb-3" placeholder="baths" value={baths} onChange={this.handleChange} required />
 
-
-
-
-
           <button type="submit" className="btn btn-danger btn-block btn-lg">Post</button>
         </form>
         <hr/>
@@ -138,4 +118,9 @@ class Posts extends React.Component {
   }
 }
 
-export default Posts;
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Posts />,
+    document.body.appendChild(document.createElement('div')),
+  )
+})
